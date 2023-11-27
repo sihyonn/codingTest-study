@@ -19,10 +19,7 @@
 */
 
 const fs = require('fs');
-let input = fs.readFileSync('./test_input.txt').toString();
-
-// 1
-input = input.split('\n');
+let input = fs.readFileSync('./test_input.txt').toString().split('\n');
 
 const inputC = +input[0];
 const inputTestCase = [];

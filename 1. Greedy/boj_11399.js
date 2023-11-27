@@ -14,8 +14,7 @@
   time = [3, 1, 4, 3, 2]
 */
 const fs = require('fs');
-let input = fs.readFileSync('./input11399.txt').toString();
-input = input.split('\n');
+let input = fs.readFileSync('./input11399.txt').toString().split('\n');
 
 const people = +input[0];
 const time = input[1].split(' ').map((v) => +v);
