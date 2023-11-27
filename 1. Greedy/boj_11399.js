@@ -28,7 +28,7 @@ function solution(people, time) {
     sum += time[i];
     result += sum;
   }
-  return result;
+  console.log(result);
 }
 
 solution(people, time);
