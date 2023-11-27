@@ -20,5 +20,16 @@ input = input.split('\n');
 const people = +input[0];
 const time = input[1].split(' ').map((v) => +v);
 
-console.log('people:', people);
-console.log('time:', time);
+// 문제풀이
+function solution(people, time) {
+  let result = 0;
+  let sum = 0;
+  time.sort((a, b) => a - b);
+  for (let i = 0; i < time.length; i++) {
+    sum += time[i];
+    result += sum;
+  }
+  return result;
+}
+
+solution(people, time);
