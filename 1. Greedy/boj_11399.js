@@ -2,7 +2,7 @@
 입력 : 첫번째 줄 - 사람의 수, 두번째 줄 - 각 사람이 돈을 인출하는데 걸리는 시간
 */
 const fs = require("fs");
-let input = fs.readFileSync("./testInput.txt").toString().split("\n");
+let input = fs.readFileSync("./input_11399.txt").toString().split("\n");
 console.log(input);
 // let input = [5, '3 1 4 3 2']
 
