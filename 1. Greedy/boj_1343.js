@@ -21,17 +21,25 @@ function solution(input) {
   let arr = [];
 
   board.forEach((b) => {
-    if (b.length != 0 && b.length % 2 === 0) {
-      let regex = /X{4}/g;
-      let bb = b.replace(regex, 'AAAA').replaceAll('X', 'B');
-      // console.log(bb);
-      arr.push(bb);
-    } else if (b.length === 0) {
+    // board 배열의 각 요소인 문자열 b가 존재할때
+    if (b.length !== 0) {
+      // b, 즉 X가 짝수개일때
+      if (b.length % 2 === 0) {
+        let regex = /X{4}/g;
+        let bb = b.replace(regex, 'AAAA').replaceAll('X', 'B');
+        arr.push(bb);
+      } else {
+        // X가 홀수개일때
+        arr.push(-1);
+      }
+    } else {
+      // b가 공백이면 그대로 두기
       arr.push('');
     }
   });
 
-  console.log(arr.join('.'));
+  let result = arr.join('.');
+  console.log(result.includes(-1) ? -1 : result);
 }
 
 solution(input);
