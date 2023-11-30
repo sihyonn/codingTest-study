@@ -10,7 +10,32 @@
  */
 
 /* 입력정제
-  n : 센서개수(숫자)
+  필요한것만 따지면?
   k : 집중국 개수(숫자)
-  position : 센서좌표(배열)
+  p : 센서좌표(배열)
 */
+
+const fs = require('fs');
+let input = fs.readFileSync('./input2212.txt').toString().split('\n');
+
+let k = input[1];
+let p = input[2].split(' ');
+
+//문제풀이
+function solution(k, p) {
+  let position = [...new Set(p)].sort((a, b) => a - b);
+  let arr = [];
+
+  for (let i = 0; i < position.length - 1; i++) {
+    arr.push(position[i + 1] - position[i]);
+  }
+
+  let result = arr
+    .sort((a, b) => b - a)
+    .slice(k - 1)
+    .reduce((a, c) => a + c, 0);
+
+  console.log(result);
+}
+
+solution(k, p);
