@@ -10,12 +10,15 @@
 
 const fs = require('fs');
 let input = fs.readFileSync('./input10815.txt').toString().split('\n');
-let card = input[1].split(' ').map(Number);
-let target = input[3].split(' ').map(Number);
+let card = new Set(input[1].split(' ').map(Number));
+let targets = input[3].split(' ').map(Number);
 
-function solution(card, target) {
-  let isHave = target.map((num) => (card.includes(num) ? 1 : 0)).join(' ');
-  console.log(isHave);
+function solution(card, targets) {
+  let result = [];
+  for (const target of targets) {
+    card.has(target) ? result.push(1) : result.push(0);
+  }
+  console.log(result.join(' '));
 }
 
-solution(card, target);
+solution(card, targets);
