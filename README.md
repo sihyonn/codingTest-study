@@ -4,9 +4,12 @@
 
 ### 📖 관련 링크
 
+
 - [스터디 Repository(taehoon branch 사용)](https://github.com/sihyonn/codingTest-study/tree/taehoon)
 - [스터디 공용 notion(코테 스터디)](https://www.notion.so/259bc90ebd2f4a709f1aa02f3f4599f0?pvs=21)
 - [개인 notion](https://www.notion.so/2024-Coding-Study-47a11625e0414b9da8a93fe42b5b1042?pvs=21)
+
+
 
 ## Week1 : Greedy Algorithm
 
