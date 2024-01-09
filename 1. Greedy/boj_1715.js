@@ -1,11 +1,17 @@
 /*
- * 백준 1715번 [카드 정렬하기]
+ * 백준 1715번 [카드 정렬하기] -> 공통 문제
  * 2024.01.09.화
  */
 
 // 입력 방식에 대해 js 상세 공부후 다시 확인 필요
 const fs = require('fs');
 let input = fs.readFileSync('./boj1715_input.txt').toString().split('\n');
+
+// 백준 채점용 input
+/*
+input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+*/
+
 
 function input_list(input) {
   let card_list = [];
