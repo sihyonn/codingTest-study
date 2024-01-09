@@ -1,5 +1,5 @@
-// BOJ - 1931 회의실 배정
-// 2024-01-08
+// BOJ 1931 회의실 배정
+// 2024. 01 .08
 const input = require("fs")
   .readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input.txt")
   .toString()
@@ -21,5 +21,3 @@ schedule.slice(1).forEach((nowSchedule) => {
   }
 });
 console.log(count);
-
-
