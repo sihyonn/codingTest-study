@@ -19,7 +19,7 @@ for (let i = 1; i <= n; i++) {
 
 //문제풀이
 function solution(arr) {
-  arr = arr.sort((a, b) => a - b);
+  arr = arr.sort((a, b) => (a[1] === b[1] ? a[0] - b[0] : a[1] - b[1]));
   let result = 1;
   let cur = arr[0][1];
 
