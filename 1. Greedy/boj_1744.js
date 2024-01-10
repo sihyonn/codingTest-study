@@ -82,6 +82,7 @@ function solution() {
     }
   }
 
+  // Negative case
   if (negative.length % 2 === 1){
     for(let i=0; i < negative.length; i=i+2){
       if (i === negative.length - 1){
