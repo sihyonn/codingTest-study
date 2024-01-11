@@ -10,7 +10,7 @@ const input = require("fs")
   .split("\n");
 
 const time = input[1].split(" ").map(Number);
-
+console.log(time);
 time.sort((a, b) => a - b);
 // solution.js
 function solution(time) {
