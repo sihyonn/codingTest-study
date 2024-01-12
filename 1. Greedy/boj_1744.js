@@ -6,7 +6,7 @@
 
 // 입력 방식에 대해 js 상세 공부후 다시 확인 필요
 const fs = require('fs');
-let input = fs.readFileSync('./boj1744_input.txt').toString().split('\n');
+let input = fs.readFileSync('./input_boj1744.txt').toString().split('\n');
 
 // 백준 채점용 input
 /*
