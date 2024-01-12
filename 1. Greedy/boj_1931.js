@@ -6,7 +6,7 @@
 
 const { log } = require('console');
 const fs = require('fs');
-let input = fs.readFileSync('./boj1931_input.txt').toString().split('\n');
+let input = fs.readFileSync('./input_boj1931.txt').toString().split('\n');
 
 // 백준 채점용 input
 /*
