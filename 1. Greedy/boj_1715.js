@@ -12,6 +12,8 @@ let input = fs.readFileSync('./input_boj1715.txt').toString().split('\n');
 input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 */
 
+/* 우선순위 큐 사용 */
+
 
 function input_list(input) {
   let card_list = [];
@@ -23,9 +25,7 @@ function input_list(input) {
 }
 
 const num = Number(input[0]);
-const card = input_list(num, input);
-
-let min_check = 999999999;
+const card = input_list(input);
 
 function solution(num, card_list) {
   
