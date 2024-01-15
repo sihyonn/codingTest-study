@@ -104,5 +104,6 @@ function solution() {
 
   console.log(sum);
 }
+console.log(negative);
 
 solution();
