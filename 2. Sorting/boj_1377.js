@@ -4,7 +4,7 @@
  */
 
 const fs = require('fs');
-let input = fs.readFileSync('./input_boj1715.txt').toString().split('\n');
+let input = fs.readFileSync('./input_boj1377.txt').toString().split('\n');
 
 // 백준 채점용 input
 /*
