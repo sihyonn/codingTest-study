@@ -15,7 +15,6 @@ input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 let num = +input[0];
 
 let input_list = [];
-let age_count = [];
 for (let i=1; i < input.length; i++) {
   // 각 element와 해당 index를 2차원 배열 형태로 생성
   let temp = input[i].split(" ");
@@ -24,4 +23,12 @@ for (let i=1; i < input.length; i++) {
   input_list.push([temp_age, temp_name]);
 }
 
-console.log(input_list);
+// 나이를 기준으로 하여 오름차순 정렬 시행
+input_list.sort((a, b) => a[0]- b[0]);
+
+// 출력
+for (let i=0; i < input_list.length; i++){
+  let age = input_list[i][0];
+  let name = input_list[i][1];
+  console.log(age + " " + name);
+}
