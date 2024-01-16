@@ -13,7 +13,6 @@ input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 */
 
 let num = +input[0];
-
 let input_list = [];
 for (let i=1; i < input.length; i++) {
   // 각 element와 해당 index를 2차원 배열 형태로 생성
