@@ -23,10 +23,42 @@ for (let i=1; i < input.length; i++) {
   input_num.push(temp_num);
 }
 
-/*
-function merge_sort(arr) {
-  let p = 
+let base = input_num[0];
+let want = input_num[1];
+
+console.log(base, want);
+
+let p = 0;
+let r = (+input[0]) - 1;
+
+console.log(p, r)
+function merge_sort(arr, p, r) {
+  if (p < r) {
+    let q = (p + r) / 2;
+    merge_sort(arr, p, q);
+    merge_sort(arr, q + 1, r);
+    merge(arr, p, q, r);
+  }
 }
 
-function merge(array, p, q, r)
-*/
+function merge(arr, p, q, r){
+  let i = p;
+  let j = q + 1;
+  let t = 1;
+  while (i <= q && j <= r) {
+    if (arr[i] <= arr[j]) {
+      tmp[t++] <- A[i++]; // tmp[t] <- A[i]; t++; i++;
+    } else {
+      tmp[t++] <- A[j++]; // tmp[t] <- A[j]; t++; j++;
+    }
+  }
+  // 왼쪽 배열 부분이 남은 경우
+  while (i <= q) {
+    tmp[t++] = A[i++];
+  }
+  // 오른쪽 배열 부분이 남은 경우
+  while (j <= r) {
+
+  }
+
+}
