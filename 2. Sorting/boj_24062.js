@@ -64,5 +64,4 @@ function merge_sort(arr, p, r) {
 }
 
 merge_sort(base, p, r);
-
 console.log(istrue);
