@@ -1,105 +1,67 @@
 /*
- * 백준 1715번 [카드 정렬하기] -> 공통 문제
- * 2024.01.12.금
+ * 백준 24062번 [알고리즘 수업 - 병합 정렬 3] -> 공통 문제
+ * 2024.01.17.수
  */
 
 // 입력 방식에 대해 js 상세 공부후 다시 확인 필요
 const fs = require('fs');
-let input = fs.readFileSync('./input_boj1715.txt').toString().split('\n');
+const { type } = require('os');
+let input = fs.readFileSync('./input_boj24062.txt').toString().split('\n');
 
 // 백준 채점용 input
 /*
 input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 */
 
-/* 우선순위 큐 사용 -> 해당부분에 대한 구현 고민 */
 
-// 우선순위 큐 구현을 위한 MinHeap 구현
-class MinHeap {
-  // 기본 구성
-  constructor() {
-      this.heap = [];
+let base = input[1].split(" ").map(Number);
+let want = input[2].split(" ").map(Number);
+
+let p = 0;
+let r = (+input[0]) - 1;
+let istrue = 0;
+
+function merge(arr, p, q, r){
+  let i = p;
+  let j = q + 1;
+  let t = 0;
+  let tmp = [];
+  while (i <= q && j <= r) {
+    if (arr[i] <= arr[j]) {
+      tmp[t++] = arr[i++];
+    } else {
+      tmp[t++] = arr[j++];
+    }
+  }
+  // 왼쪽 배열 부분이 남은 경우
+  while (i <= q) {
+    tmp[t++] = arr[i++];
+  }
+  // 오른쪽 배열 부분이 남은 경우
+  while (j <= r) {
+    tmp[t++] = arr[j++];
   }
 
-  // 
-  getLength() {
-      return this.heap.length;
-  };
+  i = p;
+  t = 0;
 
-  // tree 형태로 구성 된 heap에 element 삽입
-  push(node) {
-      this.heap.push(node);
-      let i = this.heap.length - 1; // i : 새로 추가된 node의 index
-      let parentIndex = Math.floor((i - 1) / 2);  // 새로 추가된 index의 부모 node index
-      // 첫번째 element가 아니고, 
-      // 같은 node 위치 상에서 parent 요소의 크기가 현재 node 값보다 큰 경우
-      while (i > 0 && this.heap[parentIndex] > this.heap[i]) {
-          this.swap(i, parentIndex);
-          i = parentIndex;
-          parentIndex = Math.floor((i - 1) / 2);
-      }
-  };
+  while (i <= r) {
+    arr[i++] = tmp[t++];
+  }
 
-  // 우선순위가 높은 node를 제거하고 해당 제거값을 반환하는 method
-  // 반복 이해 필요
-  pop() {
-    // case1. heap에 node 1개만 있는 경우
-    if (this.heap.length === 1) {
-      return this.heap.pop();
-    }
-
-    // case2. node가 2개 이상 존재할 경우
-    const result = this.heap[0];
-    this.heap[0] = this.heap.pop();
-    let i = 0;
-    // 현재 node의 자식 node와 값을 비교하여 위치 조정하면서 아래로 내려감
-    while (true) {
-      // 현재 node의 좌측, 우측 index 정의
-      const leftIndex = i * 2 + 1,
-      rightIndex = i * 2 + 2;
-      if (leftIndex >= this.heap.size) {
-        break;
-      }
-      let nextI = i;
-      if (this.heap[nextI] > this.heap[leftIndex]) {
-          nextI = leftIndex;
-      }
-      if (rightIndex < this.heap.length && this.heap[nextI] > this.heap[rightIndex]) {
-        nextI = rightIndex;
-      }
-      if (nextI === i) {
-        break;
-      }
-      this.swap(i, nextI);
-      i = nextI;
-    }
-    return result;
-  };
-
-  swap(a, b) {
-      const temp = this.heap[a];
-      this.heap[a] = this.heap[b];
-      this.heap[b] = temp;
-  };
+  if (arr.toString() == want.toString()) {
+    istrue = 1;
+  }
 }
 
-const N = input[0];
-const minHeap = new MinHeap();
-for (let i = 1; i < input.length; i++) {
-  minHeap.push(+input[i]);
-}
-let result = 0;
-if (N === 1) {
-  return console.log(value);
-}
-
-// 입력값이 2개 이상의 경우
-while (minHeap.getLength() > 1) {
-  let first = minHeap.pop();
-  let second = minHeap.pop();
-  let sum = first + second;
-  result += sum;
-  minHeap.push(sum);
+function merge_sort(arr, p, r) {
+  if (p < r) {
+    let q = Math.floor((p + r) / 2);
+    merge_sort(arr, p, q);
+    merge_sort(arr, q + 1, r);
+    merge(arr, p, q, r);
+  }
 }
 
-console.log(result);
+merge_sort(base, p, r);
+console.log(istrue);
