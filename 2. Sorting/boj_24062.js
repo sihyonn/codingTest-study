@@ -13,7 +13,6 @@ let input = fs.readFileSync('./input_boj24062.txt').toString().split('\n');
 input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 */
 
-
 let base = input[1].split(" ").map(Number);
 let want = input[2].split(" ").map(Number);
 
