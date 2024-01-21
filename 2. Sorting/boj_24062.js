@@ -49,7 +49,9 @@ function merge(arr, p, q, r){
     arr[i++] = tmp[t++];
   }
 
+  console.log(base, arr);
   if (arr.toString() == want.toString()) {
+
     istrue = 1;
   }
 }
