@@ -20,9 +20,20 @@ for (let i=1; i < input.length; i++) {
 }
 
 input_length.sort();
+let cut_length = 1;
+let init_cut = 1;
+let cor_length = [];
 
-let count = 0;
-let cut_length = 0;
-while (count === input_N){
-  
+while (cut_length < (input_length[0] / 2)) {
+  let count = 0;
+  for (let i=0; i < input_length.length; i++){
+    let temp_count = Math.floor(input_length[i] / cut_length);
+    count += temp_count;
+  }
+  if (count === input_N) {
+    cor_length.push(cut_length);
+  }
+  cut_length++;
 }
+
+console.log(cor_length[cor_length.length - 1]);
