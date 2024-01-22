@@ -1,12 +1,12 @@
 /*
- * 백준 24062번 [알고리즘 수업 - 병합 정렬 3] -> 공통 문제
+ * 백준 2805번 [나무 자르기] -> 공통 문제
  * 2024.01.17.수
  */
 
 // 입력 방식에 대해 js 상세 공부후 다시 확인 필요
 const fs = require('fs');
 const { type } = require('os');
-let input = fs.readFileSync('./input_boj24062.txt').toString().split('\n');
+let input = fs.readFileSync('./input_boj2805.txt').toString().split('\n');
 
 // 백준 채점용 input
 /*
