@@ -20,20 +20,32 @@ for (let i=1; i < input.length; i++) {
 }
 
 input_length.sort();
-let cut_length = 1;
-let init_cut = 1;
-let cor_length = [];
 
-while (cut_length < (input_length[0] / 2)) {
+function countCables(cutLength) {
   let count = 0;
-  for (let i=0; i < input_length.length; i++){
-    let temp_count = Math.floor(input_length[i] / cut_length);
-    count += temp_count;
+  for (let i = 0; i < input_length.length; i++) {
+    count += Math.floor(input_length[i] / cutLength);
   }
-  if (count === input_N) {
-    cor_length.push(cut_length);
-  }
-  cut_length++;
+  return count;
 }
 
-console.log(cor_length[cor_length.length - 1]);
+function solution(left, right) {
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    const cablesCount = countCables(mid);
+  
+    if (cablesCount >= input_N) {
+      answer = mid;
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+}
+
+let left = 1;
+let right = input_length[Math.floor((input_length.length - 1) / 2)];
+let answer = 0;
+solution(left, right);
+
+console.log(answer);
