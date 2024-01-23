@@ -10,15 +10,66 @@ const input = require('fs')
   .split('\n');
 
 const input_check1 = input[0].split(' ');
-const input_N = +input_check1[0];
 const input_C = +input_check1[1];
+
+console.log(input_check1, typeof (input_C);
   
-const input_length = [];
+let positions = [];
 for (let i=1; i < input.length; i++) {
   let temp = +input[i];
-  input_length.push(temp);
+  positions.push(temp);
 }
   
-input_length.sort();
+positions.sort();
 
-console.log(input_C, input_N, input_length);
+let start = 1;
+let end = positions[positions.length - 1];
+
+while (start <= end) {
+  const mid = Math.floor((start + end) / 2);
+
+  let count = 1;
+  let prev = positions[0];
+  for (const cur of positions) {
+    if (cur - prev < mid) continue;
+    prev = cur;
+    count += 1;
+  }
+
+  if (count < input_C) end = mid - 1;
+  else start = mid + 1;
+}
+
+console.log(end);
+
+/* 구글링
+const fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./input_boj2110.txt";
+const input = fs.readFileSync(filePath).toString();
+
+const [N, C, ...positions] = input
+  .trim()
+  .split(/\s/)
+  .map(Number);
+positions.sort((a, b) => a - b);
+
+let start = 1;
+let end = positions[positions.length - 1];
+
+while (start <= end) {
+  const mid = Math.floor((start + end) / 2);
+
+  let count = 1;
+  let prev = positions[0];
+  for (const cur of positions) {
+    if (cur - prev < mid) continue;
+    prev = cur;
+    count += 1;
+  }
+
+  if (count < C) end = mid - 1;
+  else start = mid + 1;
+}
+
+console.log(end);
+*/
