@@ -1,38 +1,45 @@
 /**
- * 10815번 [랜선자르기]
- * 2023.12.11.월
+ * 1654번 [랜선 자르기]
+ * 2024.01.25.목
  * https://www.acmicpc.net/problem/1654
  *
- * 입력 : 영식이의 랜선 K, 성원이가 필요한 랜선개수 N, K개의 랜선의 길이
- * 출력 : N개를 만들 수 있는 랜선의 최대 길이(정수)
- * point :
+ * 입력 : 가지고 있는 랜선 개수(k), 필요한 랜선 개수(n) / 이미 가지고 있는 각 랜선의 길이
+ * 출력 : n개를 만들 수 있는 랜선의 최대 길이 출력
  */
 
 const fs = require('fs');
 let input = fs.readFileSync('./input1654.txt').toString().split('\n');
-const [n, k] = input.shift().split(' ');
-const lan = [...input].map(Number).sort((a, b) => a - b);
+let [k, n] = input[0].split(' ').map(Number);
+let arr = input
+  .slice(1)
+  .map(Number)
+  .sort((a, b) => a - b);
 
-function solution(k, lan) {
-  let s = 1;
-  let e = Math.max(...lan);
+function solution(n, arr) {
+  let start = 1;
+  let end = Math.max(...arr);
   let result = 0;
 
-  while (s <= e) {
+  while (start <= end) {
+    let mid = parseInt((start + end) / 2);
     let total = 0;
-    let mid = parseInt((s + e) / 2);
 
-    for (l of lan) {
-      total += parseInt(l / mid);
+    for (let len of arr) {
+      total += parseInt(len / mid);
     }
-    if (total >= k) {
+
+    if (total >= n) {
       result = mid;
-      s = mid + 1;
+      start = mid + 1;
+      // total이 더 크다는건 더 크게해서 잘라야한다는 뜻 = 오른쪽에서 탐색
     } else {
-      e = mid - 1;
+      // 아니면 total이 더 작다는건 더 작게해서 잘라야한다는 뜻 = 왼쪽에서 탐색
+      end = mid - 1;
     }
   }
   console.log(result);
 }
 
-solution(k, lan);
+
+solution(n, arr);
+
