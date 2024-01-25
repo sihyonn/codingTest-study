@@ -1,30 +1,45 @@
 /*
  * 백준 2805번 [나무 자르기] -> 공통 문제
- * 2024.01.17.수
+ * 2024.01.25.목
  */
 
-// 입력 방식에 대해 js 상세 공부후 다시 확인 필요
 const input = require('fs')
-  .readFileSync(process.platform === 'linux' ? '/dev/stdin' : './input_boj2110.txt')
+  .readFileSync(process.platform === 'linux' ? '/dev/stdin' : './input_boj2805.txt')
   .toString()
   .trim()
   .split('\n');
 
-// 백준 채점용 input
-/*
-input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
-*/
-
+// setting input
 const input_check = input[0].split(' ');
 const N = +input_check[0];
 const M = +input_check[1];
 
 const trees = [];
-for (let i=1; i < input.length; i++) {
-  let temp = +input[i];
+const input_check2 = input[1].split(' ');
+for (let i=0; i < input_check2.length; i++) {
+  let temp = +input_check2[i];
   trees.push(temp);
 }
 
-trees.sort();
+trees.sort((a, b) => a - b);
 
-console.log(input, N, M, trees);
+let start = 1;
+let end = trees[N-1];
+while (start <= end) {
+  let cutting_length = 0;
+  let mid = Math.floor((start + end) / 2);
+
+  let previous = trees[0];
+  for (const cur of trees) {
+    if (cur - mid < 0) continue;
+    cutting_length += cur - mid;
+    previous = cur;
+  }
+  if (cutting_length < M) {
+    end = mid - 1;
+  } else {
+    start = mid + 1;
+  }
+}
+
+console.log(end);
