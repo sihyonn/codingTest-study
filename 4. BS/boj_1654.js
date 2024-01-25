@@ -40,4 +40,6 @@ function solution(n, arr) {
   console.log(result);
 }
 
+
 solution(n, arr);
+

@@ -9,12 +9,14 @@
 
 const fs = require('fs');
 let input = fs.readFileSync('./input2805.txt').toString().split('\n');
+
 let [n, m] = input[0].split(' ').map(Number);
 let trees = input[1].split(' ').map(Number);
 
 function solution(m, trees) {
   let start = 1;
   let end = Math.max(...trees);
+
   let result = 0; // 최대값이 될 아이
   trees.sort((a, b) => a - b);
 
@@ -31,6 +33,7 @@ function solution(m, trees) {
       result = mid;
       start = mid + 1;
     } else [(end = mid - 1)];
+
   }
   console.log(result);
 }
