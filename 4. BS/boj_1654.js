@@ -12,3 +12,27 @@ const input = require("fs")
   .toString()
   .trim()
   .split("\n");
+const [k, n] = input.shift().split(" ");
+const line = input.map(Number).sort((a, b) => a - b);
+
+function solve(arr, target) {
+  let start = 0;
+  let end = arr[arr.length - 1];
+  let answer = Number.MIN_SAFE_INTEGER;
+
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    let sum = arr.reduce((acc, cur) => acc + Math.floor(cur / mid), 0);
+
+    if (sum >= target) {
+      if (mid > answer) answer = mid;
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  return answer;
+}
+
+console.log(solve(line, n));
