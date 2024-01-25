@@ -11,8 +11,6 @@ const input = require('fs')
 
 const input_check1 = input[0].split(' ');
 const input_C = +input_check1[1];
-
-console.log(input_check1, typeof (input_C);
   
 let positions = [];
 for (let i=1; i < input.length; i++) {
