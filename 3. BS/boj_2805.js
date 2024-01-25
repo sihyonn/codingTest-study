@@ -29,11 +29,9 @@ while (start <= end) {
   let cutting_length = 0;
   let mid = Math.floor((start + end) / 2);
 
-  let previous = trees[0];
   for (const cur of trees) {
     if (cur - mid < 0) continue;
     cutting_length += cur - mid;
-    previous = cur;
   }
   if (cutting_length < M) {
     end = mid - 1;
