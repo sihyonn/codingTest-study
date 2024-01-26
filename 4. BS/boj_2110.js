@@ -14,3 +14,25 @@ const input = require("fs")
   .split("\n");
 const [n, c] = input.shift().split(" ");
 const house = input.map(Number).sort((a, b) => a - b);
+
+function solve(arr, target) {
+  let start = 1;
+  let end = arr[arr.length - 1] - arr[0];
+
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    let prev = arr[0];
+    let count = 1;
+    for (const cur of arr) {
+      if (cur - prev < mid) continue;
+      prev = cur;
+      count += 1;
+    }
+
+    if (count < target) end = mid - 1;
+    else start = mid + 1;
+  }
+
+  return end;
+}
+console.log(solve(house, c));
