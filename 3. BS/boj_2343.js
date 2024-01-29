@@ -4,48 +4,43 @@
  */
 
 const input = require('fs')
-  .readFileSync(process.platform === 'linux' ? '/dev/stdin' : './input_boj1654.txt')
+  .readFileSync(process.platform === 'linux' ? '/dev/stdin' : './input_boj2343.txt')
   .toString()
-  .trim()
   .split('\n');
 
-const input_check1 = input[0].split(' ');
-const input_K = +input_check1[0];
-const input_N = +input_check1[1];
 
-const input_length = [];
-for (let i=1; i < input.length; i++) {
-  let temp = +input[i];
-  input_length.push(temp);
+let [M, N] = input[0].split(' ').map(Number);
+let arr = input[1].split(' ').map(Number);
+
+let left = Math.max(...arr);
+let right = 0;
+for (let i=0; i < M; i++) {
+  right += arr[i];
 }
 
-input_length.sort();
+let answer = Number.MAX_SAFE_INTEGER;
 
-function countCables(cutLength) {
-  let count = 0;
-  for (let i = 0; i < input_length.length; i++) {
-    count += Math.floor(input_length[i] / cutLength);
-  }
-  return count;
-}
+while(left <= right) {
+  let mid = Math.floor((left + right) / 2);
 
-function solution(left, right) {
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
-    const cablesCount = countCables(mid);
-  
-    if (cablesCount >= input_N) {
-      answer = mid;
-      left = mid + 1;
+  let count = 1;
+  let temp_sum = 0;
+  for (let i = 0; i < M; i++) {
+    if (temp_sum + arr[i] <= mid) {
+      temp_sum += arr[i];
     } else {
-      right = mid - 1;
+      count++;
+      temp_sum = 0 + arr[i];
+      if (count > N) break;
     }
   }
+  if (count > N) {
+    left = mid + 1;
+  }
+  if (count <= N) {
+    if (answer >= mid) answer = mid;
+    right = mid - 1;
+  }
 }
-
-let left = 1;
-let right = input_length[Math.floor((input_length.length - 1) / 2)];
-let answer = 0;
-solution(left, right);
 
 console.log(answer);
