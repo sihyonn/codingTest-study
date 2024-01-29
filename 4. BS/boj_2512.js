@@ -1,37 +1,47 @@
+/**
+ * 2512 [예산]
+ * 2024.01.29.월요일
+ * https://www.acmicpc.net/problem/2512
+ *
+ * 입력 : 예산 개수 / 예산 금액 / 목표 총 예산
+ * 출력 : 배정된 예산들 중 최댓값인 정수
+ * point : - 배정된 총 예산이 조건을 만족하면, 상한금액을 증가시킨다
+           - 배정된 총 예산이 조건을 만족하지 못한다면 상한 금액을 감소시킨다
+ */
 const input = require("fs")
-  .readFileSync("./input_2776.txt")
+  .readFileSync(process.platform === "linux" ? "/dev/stdin" : "4. BS/input.txt")
   .toString()
   .trim()
   .split("\n");
+const n = +input[0];
+const request = input[1]
+  .split(" ")
+  .map(Number)
+  .sort((a, b) => a - b);
+const m = +input[2];
 
-const [N, request, total] = [
-  +input[0],
-  input[1].split(" ").map(Number),
-  +input[2],
-];
-
-request.sort((a, b) => a - b);
-
-let left = 0;
-let right = request[request.length - 1];
+let start = 1;
+let end = request[request.length - 1];
 let answer = Number.MIN_SAFE_INTEGER;
 
-while (left <= right) {
-  let mid = Math.floor((left + right) / 2);
+function solve(arr, target) {
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    let total = 0; // 가능한 총액 계산
 
-  let possible = 0;
-  for (let x of request) {
-    if (x > mid) possible += mid;
-    else possible += x;
-  }
+    for (let x of arr) {
+      total += Math.min(x, mid);
+    }
 
-  if (total >= possible) {
-    // 예산 배정이 가능한 경우
-    if (mid > answer) answer = mid;
-    left = mid + 1;
-  } else {
-    right = mid - 1;
+    if (total <= target) {
+      // 예산 배정이 가능하다면 상한액 증가시키기
+      answer = mid;
+      start = mid + 1;
+    } else {
+      right = mid - 1;
+    }
   }
+  return answer;
 }
 
-console.log(answer);
+console.log(solve(request, m));
