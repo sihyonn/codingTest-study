@@ -1,12 +1,11 @@
 /**
  * 2512번[예산]
- * 2023.12.08.금
+ * 2023.01.30.화
  * https://www.acmicpc.net/problem/2512
  *
- * 입력 : 지방수, 요청예산, 총예산
+ * 입력 : 지방수(n), 요청예산(demand), 총예산(total)
  * 출력 : 최종 배정 금액 중 최댓값
  */
-
 const fs = require('fs');
 let input = fs.readFileSync('./input2512.txt').toString().split('\n');
 let demand = input[1].split(' ').map(Number); // 각 지방별 요청한 예산
