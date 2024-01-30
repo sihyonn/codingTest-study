@@ -8,12 +8,12 @@
  */
 
 const fs = require('fs');
-let input = fs.readFileSync('./input2343.txt').toString().split('\n');
+let input = fs.readFileSync('./input2343.txt').toString().trim().split('\n');
 let [n, m] = input[0].split(' ').map(Number);
 let lectures = input[1].split(' ').map(Number);
 
 function solution(n, m, lectures) {
-  let start = 1;
+  let start = Math.max(...lectures);
   let end = lectures.reduce((a, b) => a + b, 0);
   let result;
 
