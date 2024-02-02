@@ -13,7 +13,7 @@ const N = +input[0];
 const arr = input[1].split(' ').map(Number).sort((a, b) => a - b);
 const M = +input[2];
 
-let left = 1;
+let left = 0;
 let right = arr[N - 1];
 
 let maxSum = 0;
