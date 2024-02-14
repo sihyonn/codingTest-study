@@ -1,51 +1,48 @@
 /*
- * 백준 2606번 [바이러스] -> 공통 문제
- * 2024.02.05.월
+ * 백준 11725번 [트리의 부모 찾기] -> 공통 문제
+ * 2024.02.14.수
  */
 
-const input = require('fs')
-  .readFileSync(process.platform === 'linux' ? '/dev/stdin' : './input_boj2606.txt')
+const input = require("fs")
+  .readFileSync(
+    process.platform === "linux" ? "/dev/stdin" : "./input_boj11725.txt"
+  )
   .toString()
   .trim()
-  .split('\n');
+  .split("\n");
 
-const input_check1 = input[0].split(' ');
-const input_K = +input_check1[0];
-const input_N = +input_check1[1];
+const N = +input[0];
+let graph = [...new Array(N + 1)].map(() => []);
+let visited = [...new Array(N + 1)].fill(false);
+let parent = [...new Array(N + 1)].fill(0);
 
-const input_length = [];
-for (let i=1; i < input.length; i++) {
-  let temp = +input[i];
-  input_length.push(temp);
+for (let i = 0; i < N - 1; i++) {
+  const start = Number(input[i + 1].split(" ")[0]);
+  const end = Number(input[i + 1].split(" ")[1]);
+  graph[start].push(end);
+  graph[end].push(start);
 }
 
-input_length.sort();
-
-function countCables(cutLength) {
-  let count = 0;
-  for (let i = 0; i < input_length.length; i++) {
-    count += Math.floor(input_length[i] / cutLength);
+function dfs(vertex) {
+  if (visited[vertex]) {
+    return;
   }
-  return count;
-}
 
-function solution(left, right) {
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
-    const cablesCount = countCables(mid);
-  
-    if (cablesCount >= input_N) {
-      answer = mid;
-      left = mid + 1;
-    } else {
-      right = mid - 1;
+  visited[vertex] = true;
+  graph[vertex].forEach((child) => {
+    if (!visited[child]) {
+      parent[child] = vertex;
     }
-  }
+
+    dfs(child);
+  });
 }
 
-let left = 1;
-let right = input_length[Math.floor((input_length.length - 1) / 2)];
-let answer = 0;
-solution(left, right);
+dfs(1);
 
-console.log(answer);
+let ans = "";
+
+for (let i = 2; i < parent.length; i++) {
+  ans += parent[i] + "\n";
+}
+console.log(ans);
